@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Osteosarcoma Detection tool</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}" >
+</head>
+<body>
+    <h1>Osteosarcoma Detection Tool Using Histopathology image</h1>
+    <div class = "imageUploadMain">
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <div class = "uploadInput">
+                <label>Select Image</label>
+                <input type="file" name="image" id="image">
+            </div>
+            <label>Select Resolutions</label>
+            <input type="radio" name = "res" value="128" checked>128x128<br>
+            <input type="radio" name="res" value="256">256x256<br>
+            <input type="radio" name="res" value="512">512x512<br>
+            <input type="radio" name="res" value="1024">1024x1024<br>
+
+            <label>Select Model</label>
+            <input type="radio" name="model" value="cnn" checked>CNN<br>
+            <input type="radio" name="model" value="vgg16">VGGNet16<br>
+            <input type="radio" name="model" value="vgg19">VGGNet19<br>
+            <input type="radio" name="model" value="resnet">Resnet50<br>
+            <input type="radio" name="model" value="inception">InceptionResnetV2<br>
+            <input type="radio" name="model" value="exception">Exception<br>
+            <button class="uploadButton" type="submit">SUBMIT</button>
+         </form>
+    </div>
+
+
+</body>
+</html>
