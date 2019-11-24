@@ -12,7 +12,11 @@
        <form method="POST" action="/result" enctype="multipart/form-data" class=" form" id = upload>
             <div class = "uploadInput">
                 <div class = "selectImage">
-                <label>
+                <label
+                ondragover="overrideDef(event);"
+                ondragenter="overrideDef(event);"
+                ondragleave="overrideDef(event);"
+                ondrop="overrideDef(event);addFile(event);">
                     <div class = "imageInputArea">Select Image<br>
                          <img src="{{ url_for('static', filename = 'uploadIcon.png') }}" id="inputImage"
                               height="100px" width="100px">
@@ -38,9 +42,22 @@
     </div>
     <script type="text/javascript">
         document.getElementsByName("image")[0].addEventListener('change',formAutoSubmit);
+        fileInput = document.querySelector('input');
         function formAutoSubmit() {
             var frm = document.getElementById("upload");
             frm.submit();
+
+        }
+
+        function overrideDef(event){
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        function addFile(event){
+             fileInput.files = event.dataTransfer.files;
+             console.log(fileInput.files);
+             formAutoSubmit();
         }
     </script>
 

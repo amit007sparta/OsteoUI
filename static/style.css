@@ -45,8 +45,6 @@ input[type = "file"] {
     display: flex;
     align-content: center;
 }
-warning_para{
-}
 
 .result{
     margin: auto;
