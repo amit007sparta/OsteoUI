@@ -6,29 +6,43 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}" >
 </head>
 <body>
-    <h1>Osteosarcoma Detection Tool Using Histopathology image</h1>
+    <div class = main>
+    <h1 class = topic>Osteosarcoma Detection Tool Using Histopathology image</h1>
     <div class = "imageUploadMain">
-        <form method="POST" action="/upload" enctype="multipart/form-data">
+       <form method="POST" action="/result" enctype="multipart/form-data" class=" form" id = upload>
             <div class = "uploadInput">
-                <label>Select Image</label>
-                <input type="file" name="image" id="image">
-            </div>
-            <label>Select Resolutions</label>
-            <input type="radio" name = "res" value="128" checked>128x128<br>
-            <input type="radio" name="res" value="256">256x256<br>
-            <input type="radio" name="res" value="512">512x512<br>
-            <input type="radio" name="res" value="1024">1024x1024<br>
+                <div class = "selectImage">
+                <label>
+                    <div class = "imageInputArea">Select Image<br>
+                         <img src="{{ url_for('static', filename = 'uploadIcon.png') }}" id="inputImage"
+                              height="100px" width="100px">
+                    </div>
+                    <input type="file" name="image" id="image">
+                </label>
 
-            <label>Select Model</label>
-            <input type="radio" name="model" value="cnn" checked>CNN<br>
-            <input type="radio" name="model" value="vgg16">VGGNet16<br>
-            <input type="radio" name="model" value="vgg19">VGGNet19<br>
-            <input type="radio" name="model" value="resnet">Resnet50<br>
-            <input type="radio" name="model" value="inception">InceptionResnetV2<br>
-            <input type="radio" name="model" value="exception">Exception<br>
-            <button class="uploadButton" type="submit">SUBMIT</button>
-         </form>
+                </div>
+
+            </div>
+       </form>
     </div>
+        {% if pred %}
+        <div class = result>
+            <img class="imageOut" src="{{ url_for('static',filename = img) }}" height="300" width="300">
+            <h1 class = "resultText">{{ typeOsteo }}</h1>
+        </div>
+        {% else %}
+            <div class = "warning">
+                <p class="warning_para">{{ warning }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <script type="text/javascript">
+        document.getElementsByName("image")[0].addEventListener('change',formAutoSubmit);
+        function formAutoSubmit() {
+            var frm = document.getElementById("upload");
+            frm.submit();
+        }
+    </script>
 
 
 </body>

@@ -1,7 +1,63 @@
-.imageUploadMain{
-    display: inline;
+
+.main{
+    width: 100%;
+    margin: auto;
+}
+.topic{
+    margin: 20px;
+    width : 100%;
+    text-align: center;
+    display: block;
+    position: relative;
 }
 
-h1{
-    color: red;
+
+.imageUploadMain{
+    width: 100%;
+    margin: 0 auto;
+
+}
+.uploadInput {
+    width: 75%;
+    margin : 0 auto;
+    display: flex;
+    flex-direction : column;
+}
+.imageInputArea{
+
+}
+
+input[type = "file"] {
+    display: none;
+}
+
+.selectImage {
+    margin: 5px;
+    align-self: center;
+}
+.uploadButton {
+    margin: 5px;
+    width: 20%;
+    align-self: center;
+}
+
+.warning{
+    display: flex;
+    align-content: center;
+}
+warning_para{
+}
+
+.result{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-content = center;
+}
+.imageOut{
+    align-self: center;
+}
+.resultText{
+    margin: 10px;
+    align-self: center;
 }
