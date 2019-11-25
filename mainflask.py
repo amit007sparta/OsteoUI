@@ -64,7 +64,7 @@ def result():
     if input_image.filename != '':
         print(input_image)
         if not allowedImage(input_image.filename):
-            warning = "The file must be an Image"
+            warning = "ALERT: The file must be an Image !"
             print(warning)
             invalid = True
             #return redirect('http://localhost:5000')
@@ -73,7 +73,7 @@ def result():
             typeOsteo = get_predicted_value(input_image)
             pred = True
     else:
-        warning = "Please select an Image"
+        warning = "ALERT: Please select an Image !"
     img = input_image.filename
     return render_template("homepage.html", img=img, typeOsteo=typeOsteo, pred=pred, warning=warning)
 

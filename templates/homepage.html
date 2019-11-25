@@ -6,20 +6,25 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}" >
 </head>
 <body>
-    <div class = main>
+    <div class = main
+                ondragover="overrideDef(event);"
+                ondragenter="overrideDef(event);"
+                ondragleave="overrideDef(event);"
+                ondrop="overrideDef(event);">
     <h1 class = topic>Osteosarcoma Detection Tool Using Histopathology image</h1>
     <div class = "imageUploadMain">
        <form method="POST" action="/result" enctype="multipart/form-data" class=" form" id = upload>
             <div class = "uploadInput">
                 <div class = "selectImage">
                 <label
-                ondragover="overrideDef(event);"
-                ondragenter="overrideDef(event);"
-                ondragleave="overrideDef(event);"
-                ondrop="overrideDef(event);addFile(event);">
-                    <div class = "imageInputArea">Select Image<br>
+                ondragover="overrideDef(event);classAdd();"
+                ondragenter="overrideDef(event);classAdd();"
+                ondragleave="overrideDef(event);classRemove();"
+                ondrop="overrideDef(event);addFile(event);classRemove();">
+                    <div class = "imageInputArea">
                          <img src="{{ url_for('static', filename = 'uploadIcon.png') }}" id="inputImage"
                               height="100px" width="100px">
+                        <p>Select Image or Drag it Here</p>
                     </div>
                     <input type="file" name="image" id="image">
                 </label>
@@ -32,7 +37,7 @@
         {% if pred %}
         <div class = result>
             <img class="imageOut" src="{{ url_for('static',filename = img) }}" height="300" width="300">
-            <h1 class = "resultText">{{ typeOsteo }}</h1>
+            <h1 class = "resultText">The image resulted in "{{ typeOsteo }}".</h1>
         </div>
         {% else %}
             <div class = "warning">
@@ -59,6 +64,15 @@
              console.log(fileInput.files);
              formAutoSubmit();
         }
+        function classAdd(){
+            opacity = document.getElementsByClassName("selectImage")[0];
+            opacity.classList.add("opInc");
+        }
+        function classRemove(){
+            opacity = document.getElementsByClassName("selectImage")[0];
+            opacity.classList.remove("opInc");
+        }
+
     </script>
 
 
